@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analina's Gallery</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Analina's Gallery</h1>
+        <p>Bem-vindo à nossa galeria de arte. Explore os artistas e suas obras!</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" placeholder="Buscar artista...">
+    </div>
+
+    <div class="artists-container">
+        {% for artista in artistas %}
+            <div class="artist">
+                <p>{{ artista.nome }}</p>
+                <a href="{% url 'pagina_artista' artista.id %}">
+                    <img src="{{ artista.foto.url }}" alt="{{ artista.nome }}">
+                </a>
+                <button onclick="location.href='{% url 'pagina_artista' artista.id %}'">Saiba Mais</button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <p>Desenvolvido por <a href="https://www.instagram.com/ana.carolina.pio/" target="_blank">Ana Carolina Pio</a> e <a href="https://www.instagram.com/cunhoso" target="_blank">João Cunha</a></p>
+    </footer>
+
+    <a class="back-to-top">Back to top</a>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

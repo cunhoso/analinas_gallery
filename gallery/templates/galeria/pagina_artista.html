@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ artista.nome }}</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style_artista.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="{% url 'pagina_inicial' %}" class="back-home-button">
+        <img src="{% static 'images/home-icon.png' %}" alt="Back to Home">
+      </a>
+      
+      <div class="artist-name-container">
+        <span class="artist-name">{{ artista.nome }}</span>
+      </div>
+    </div>
+  </header>
+  
+  <div class="search-container">
+    <input type="text" placeholder="Buscar obra de arte">
+  </div>
+
+  <div class="artist-info">
+    <img src="{{ artista.foto.url }}" alt="{{ artista.nome }}">
+    <div class="artist-description">
+      <p>{{ artista.descricao }}</p>
+    </div>
+  </div>
+
+  <h2>Obras de {{ artista.nome }}</h2>
+  <div class="artworks-container">
+    {% for obra in obras %}
+      <div class="artwork">
+        <img src="{{ obra.imagem.url }}" alt="{{ obra.titulo }}" class="artwork-img">
+        <p>{{ obra.titulo }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <footer>
+    <p>Desenvolvido por <a href="https://www.instagram.com/ana.carolina.pio/" target="_blank">Ana Carolina Pio</a>e <a href="https://www.instagram.com/cunhoso" target="_blank">João Cunha</a></p>
+    <a class="back-to-top" href="#"><img src="{% static 'images/seta.png' %}" alt="Back to Top"></a>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
